@@ -1,0 +1,113 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+body {
+  background-color: #1a1f29;
+  font-size: 1.6rem;
+  font-family: "Open Sans", sans-serif;
+  display: grid;
+  place-self: center;
+  min-height: 100vh;
+  > div {
+    display: grid;
+    place-self: center;
+    background-color: #313a49;
+    width: 300px;
+    min-height: 150px;
+
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+
+    > section {
+      border-bottom: 1px solid #cad5e644;
+      margin-bottom: 2rem;
+      h1 {
+        color: #15db7c;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+      p {
+        font-family: "Roboto", serif;
+        font-weight: 500;
+        color: rgba(224, 232, 240, 0.842);
+        text-align: center;
+        padding: 2rem;
+        font-size: 1.8rem;
+        line-height: 2.5rem;
+
+        &::before {
+          content: "“";
+        }
+        &::after {
+          content: "”";
+        }
+      }
+      i {
+        display: block;
+        width: 100%;
+        margin-bottom: 2rem;
+        font-size: 2.2rem;
+        color: #8f98a7;
+        text-align: center;
+        position: relative;
+        &::after {
+          content: "▢";
+          position: absolute;
+          right: 49%;
+          bottom: 5px;
+        }
+      }
+      > div {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -25px;
+        background-color: #53ffab;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        display: grid;
+        place-self: center;
+        place-content: center;
+        height: 50px;
+        button {
+          background-color: #313a49;
+          border-radius: 5px;
+          border: none;
+          color: #fff;
+          padding: 0 0.5rem;
+          font-size: 1.8rem;
+          cursor: pointer;
+          aspect-ratio: 1/1;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  body > div {
+    width: 700px;
+    min-height: 250px;
+  }
+  body > div section p {
+    font-size: 3.5rem;
+    line-height: 5.5rem;
+    font-weight: 500;
+  }
+  body > div section h1 {
+    font-size: 1.6rem;
+  }
+  body > div section i {
+    font-size: 3rem;
+    &::after {
+      bottom: 7px;
+    }
+  }
+}
