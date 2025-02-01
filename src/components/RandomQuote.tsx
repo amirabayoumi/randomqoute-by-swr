@@ -15,9 +15,10 @@ const RandomQuote = () => {
     revalidateOnFocus: false,
   });
 
+  // display advice
   const [randomQuote, setRandomQuote] = useState(data?.slip.advice);
   const [adviceId, setAdviceId] = useState(data?.slip.id);
-
+  // next advice to be stored
   const [nextQuote, setNextQuote] = useState("");
   const [nextAdviceId, setNextAdviceId] = useState(0);
 
@@ -31,7 +32,13 @@ const RandomQuote = () => {
     }
   }, [data]);
 
-  // Function to fetch and store the next advice
+  // OnClick => mutate saved advice and fetch new advice
+  async function getAnotherQuote() {
+    mutate({ slip: { advice: nextQuote, id: nextAdviceId } }, false);
+    await preloadNextAdvice();
+  }
+
+  // Function to fetch and store the next advice to be displayed as mutate
   async function preloadNextAdvice() {
     const newData = await fetcher(url);
     setNextQuote(newData.slip.advice);
@@ -39,11 +46,7 @@ const RandomQuote = () => {
     console.log(newData.slip.id);
   }
 
-  async function getAnotherQuote() {
-    mutate({ slip: { advice: nextQuote, id: nextAdviceId } }, false);
-    await preloadNextAdvice();
-  }
-
+  // Function to copy to clipboard
   const toClipboard: () => Promise<void> = async () => {
     try {
       await navigator.clipboard.writeText(randomQuote);
@@ -52,7 +55,7 @@ const RandomQuote = () => {
       console.error("Failed to copy to clipboard:", error);
     }
   };
-
+  // Function to handle copy click (toast)
   const handleCopy = () => {
     toClipboard();
     toast.success("Copied to clipboard", {
