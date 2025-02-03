@@ -15,7 +15,7 @@ const RandomQuote = () => {
     revalidateOnFocus: false,
   });
 
-  // display advice
+  // State to store the random quote and advice id
   const [randomQuote, setRandomQuote] = useState(data?.slip.advice);
   const [adviceId, setAdviceId] = useState(data?.slip.id);
 
@@ -26,7 +26,7 @@ const RandomQuote = () => {
     }
   }, [data]);
 
-  // OnClick => mutate saved advice and fetch new advice
+  // OnClick => get another quote
   async function getAnotherQuote() {
     mutate();
     setRandomQuote(data?.slip.advice);
@@ -59,7 +59,6 @@ const RandomQuote = () => {
 
   return (
     <>
-      {" "}
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <section>
