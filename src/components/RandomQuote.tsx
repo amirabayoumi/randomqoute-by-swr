@@ -18,32 +18,19 @@ const RandomQuote = () => {
   // display advice
   const [randomQuote, setRandomQuote] = useState(data?.slip.advice);
   const [adviceId, setAdviceId] = useState(data?.slip.id);
-  // next advice to be stored
-  const [nextQuote, setNextQuote] = useState("");
-  const [nextAdviceId, setNextAdviceId] = useState(0);
 
   useEffect(() => {
     if (data) {
       setRandomQuote(data.slip.advice);
       setAdviceId(data.slip.id);
     }
-    if (!nextQuote && data) {
-      preloadNextAdvice();
-    }
   }, [data]);
 
   // OnClick => mutate saved advice and fetch new advice
   async function getAnotherQuote() {
-    mutate({ slip: { advice: nextQuote, id: nextAdviceId } }, false);
-    await preloadNextAdvice();
-  }
-
-  // Function to fetch and store the next advice to be displayed as mutate
-  async function preloadNextAdvice() {
-    const newData = await fetcher(url);
-    setNextQuote(newData.slip.advice);
-    setNextAdviceId(newData.slip.id);
-    console.log(newData.slip.id);
+    mutate();
+    setRandomQuote(data?.slip.advice);
+    setAdviceId(data?.slip.id);
   }
 
   // Function to copy to clipboard
